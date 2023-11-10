@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.plugins.*
+import getJwtConfig
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -11,8 +12,9 @@ fun main() {
 }
 
 fun Application.module() {
-    val port = environment.config.propertyOrNull("ktor.deployment.port")?.getString() ?: "8080"
+    val serverInfo = getServerInfo()
+    val jwtConfig = getJwtConfig()
     configureSerialization()
-    configureSecurity()
-    configureRouting(port = port)
+    configureSecurity(jwtConfig = jwtConfig)
+    configureRouting(serverInfo = serverInfo, jwtConfig = jwtConfig)
 }
