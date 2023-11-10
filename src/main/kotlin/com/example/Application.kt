@@ -11,7 +11,8 @@ fun main() {
 }
 
 fun Application.module() {
+    val port = environment.config.propertyOrNull("ktor.deployment.port")?.getString() ?: "8080"
     configureSerialization()
     configureSecurity()
-    configureRouting()
+    configureRouting(port = port)
 }
