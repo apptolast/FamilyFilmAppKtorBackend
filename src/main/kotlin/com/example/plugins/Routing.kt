@@ -13,5 +13,7 @@ fun Application.configureRouting(serverInfo: ServerInfo, jwtConfig: JwtConfig) {
             call.respondText("Listening on port ${serverInfo.port}")
         }
         authRoutes(jwtConfig = jwtConfig)
+
+
     }
 }
